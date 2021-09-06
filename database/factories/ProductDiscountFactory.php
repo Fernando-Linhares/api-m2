@@ -22,7 +22,7 @@ class ProductDiscountFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'value'=>rand(1,10)
         ];
     }
 }

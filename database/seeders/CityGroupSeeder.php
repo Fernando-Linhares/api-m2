@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CityGroup;
 use Illuminate\Database\Seeder;
 
 class CityGroupSeeder extends Seeder
@@ -13,6 +14,6 @@ class CityGroupSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CityGroup::factory(5)->create();
     }
 }

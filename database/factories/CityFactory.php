@@ -22,7 +22,9 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->sentence(),
+            'state_id'=>rand(1,5),
+            'country_id'=>rand(1,5)
         ];
     }
 }

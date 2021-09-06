@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CityState;
 use Illuminate\Database\Seeder;
 
 class CityStateSeeder extends Seeder
@@ -13,6 +14,6 @@ class CityStateSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CityState::factory(5);
     }
 }

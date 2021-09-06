@@ -22,7 +22,13 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->name(),
+            'is_active'=>false,
+            'is_shutdown'=>false,
+            'description'=>$this->faker->sentence(),
+            'goal_description'=>$this->faker->sentence(),
+            'start_date'=>now(),
+            'end_date'=>now(),
         ];
     }
 }

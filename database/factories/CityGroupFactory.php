@@ -22,7 +22,8 @@ class CityGroupFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->name(),
+            'city_id'=>rand(1,5)
         ];
     }
 }
