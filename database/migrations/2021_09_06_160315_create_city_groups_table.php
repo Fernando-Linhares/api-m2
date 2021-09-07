@@ -16,7 +16,6 @@ class CreateCityGroupsTable extends Migration
         Schema::create('city_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('city_id');
             $table->timestamps();
         });
     }

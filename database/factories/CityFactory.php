@@ -24,7 +24,8 @@ class CityFactory extends Factory
         return [
             'name'=>$this->faker->sentence(),
             'state_id'=>rand(1,5),
-            'country_id'=>rand(1,5)
+            'country_id'=>rand(1,5),
+            'group'=>rand(1,5)
         ];
     }
 }

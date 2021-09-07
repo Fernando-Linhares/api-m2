@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     /**
      * @param \App\Models\Product $product
      */
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        foreach($this->product->latest()->paginate(20) as $product){
+        $product = array();
+        foreach($this->product->all() as $product){
             $products[] = collect([
                 'name'=>$product->name,
                 'price'=>$product->price,
@@ -32,7 +34,8 @@ class ProductController extends Controller
                 'category'=>$product->category,
             ]);
         }
-        return response()->json($products);   
+
+        return response()->json($product);   
     }
 
     /**
@@ -43,16 +46,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       $_request =  $request->whenHas('category',function($input)use($request){
-            return [
-                'name' => $request->name,
-                'category_id' => ProductCategory::where('name',$input)->first()->id,
-                'price' => $request->price,
-                'description'=>$request->description
-            ];
-        });
+        $this->product->name = $request->name;
+        $this->product->category_id = ProductCategory::where('name',$request->category)->first()->id;
+        $this->product->price = $request->price;
+        $this->product->description = $request->description;
 
-        if($this->product->create($_request))
+        if($this->product->save())
             return response()->json(['message'=>'product created successfully']);
         
         return response()->json(['message'=>'error on creating product']);
@@ -85,16 +84,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $_request =  $request->whenHas('category',function($input)use($request){
-            return [
-                'name' => $request->name,
-                'category_id' => ProductCategory::where('name',$input)->first()->id,
-                'price' => $request->price,
-                'description'=>$request->description
-            ];
-        });
+        $product->name = $request->name;
+        $product->category_id = ProductCategory::where('name',$request->category)->first()->id;
+        $product->price = $request->price;
+        $product->description = $request->description;
 
-        if($product->update($_request))
+        if($product->save())
             return response()->json(['message'=>'product updated successfully']);
 
         return response()->json(['message'=>'error on updating product']);

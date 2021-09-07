@@ -23,7 +23,6 @@ class CityGroupFactory extends Factory
     {
         return [
             'name'=>$this->faker->name(),
-            'city_id'=>rand(1,5)
         ];
     }
 }
